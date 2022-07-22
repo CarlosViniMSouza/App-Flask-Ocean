@@ -1,4 +1,4 @@
 git add .
-git commit -m "README.MD -> added"
+git commit -m "__pycache__ -> removed"
 git push
 git status
