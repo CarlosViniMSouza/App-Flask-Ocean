@@ -1,4 +1,4 @@
 git add .
-git commit -m "__pycache__ -> removed | main.py -> up"
+git commit -m "day01 -> ok"
 git push
 git status

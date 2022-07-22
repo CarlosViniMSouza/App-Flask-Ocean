@@ -19,3 +19,5 @@ def root():
 @app.route("/hello/<user>")
 def helloUser(user):
     return f"<h2> hello, {escape(user)} </h2>"
+
+# CRUD -> get() | post() | put() | delete()
