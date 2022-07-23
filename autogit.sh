@@ -1,4 +1,4 @@
 git add .
-git commit -m "day01 -> ok"
+git commit -m "requirements.txt -> added"
 git push
 git status
