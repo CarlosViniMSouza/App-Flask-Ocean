@@ -1,4 +1,4 @@
 git add .
-git commit -m "requirements.txt -> added"
+git commit -m "progress -> null"
 git push
 git status

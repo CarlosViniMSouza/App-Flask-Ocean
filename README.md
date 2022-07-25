@@ -7,3 +7,16 @@ Flask depends on the Jinja template engine and the Werkzeug WSGI toolkit. The do
 ° [Jinja documentation](https://jinja.palletsprojects.com/)
 
 ° [Werkzeug documentation](https://werkzeug.palletsprojects.com/)
+
+Code base for program flask:
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "Hello World, Flask"
+
+```
