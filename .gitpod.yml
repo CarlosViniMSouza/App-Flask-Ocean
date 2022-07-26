@@ -1,0 +1,4 @@
+# Configuration Enviroment Python
+
+tasks:
+  - init: pip install -r requirements.txt

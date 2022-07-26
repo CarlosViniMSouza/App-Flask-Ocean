@@ -1,5 +1,5 @@
 from markupsafe import escape
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -9,6 +9,10 @@ def root():
     return "<h1> Hello, Flask! </h1>"
 
 
-@app.route("/hello/<user>")
-def helloUser(user):
-    return f"<h2> hello, {escape(user)} </h2>"
+@app.route("/contacts")
+def contacts():
+    name = "Carlos Souza"
+    username = "@CarlosViniMSouza"
+    email = "vinicius.souza@gmail.com"
+
+    return render_template("index.html", name=name, username=username, email=email)

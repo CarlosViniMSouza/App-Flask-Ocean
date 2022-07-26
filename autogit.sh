@@ -1,4 +1,4 @@
 git add .
-git commit -m "progress -> null"
+git commit -m "add alts news"
 git push
 git status
