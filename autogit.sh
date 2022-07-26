@@ -1,4 +1,4 @@
 git add .
-git commit -m "add alts news"
+git commit -m "interval"
 git push
 git status
