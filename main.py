@@ -1,40 +1,48 @@
-from markupsafe import escape
+from flask import Flask, render_template, redirect
 from datetime import datetime
-from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-posts = [
-    {
-        "title": "First Post",
-        "body": "Text of false post :)",
-        "author": "CarlosViniMSouza",
-        "created": datetime(2022, 7, 26)
-    },
-    {
-        "title": "Second Post",
-        "body": "Text of second false post :|",
-        "author": "CVMDS",
-        "created": datetime(2022, 7, 25)
-    },
-    {
-        "title": "Third Post",
-        "body": "Text of last false post! u.u",
-        "author": "CarloSouza",
-        "created": datetime(2022, 7, 24)
-    }
-]
+db = SQLAlchemy(app)
+
+
+class Post(db.Model):
+    __tablename__ = 'posts'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(70), nullable=False)
+    body = db.Column(db.String(500))
+    author = db.Column(db.String(20))
+    created = db.Column(db.DateTime, nullable=False, default=datetime.now)
+
+
+db.create_all()
 
 
 @app.route("/")
-def root():
-    return "<h1> Hello, Flask! </h1>"
+def index():
+    posts = Post.query.all()
+    return render_template("index.html", posts=posts)
 
 
-@app.route("/contacts")
-def contacts():
-    name = "Carlos Souza"
-    username = "@CarlosViniMSouza"
-    email = "vinicius.souza@gmail.com"
+@app.route("/populate")
+def populate():
+    post1 = Post(
+        title="Fake Text 01",
+        body="Created a fake text for test",
+        author="CarlosViniMSouza"
+    )
 
-    return render_template("index.html", name=name, username=username, email=email, posts=posts)
+    post2 = Post(
+        title="Fake Text 02",
+        body="Created a fake text for test",
+        author="CarloSouza"
+    )
+
+    db.session.add(post1)
+    db.session.add(post2)
+    db.session.commit()
+
+    return redirect("/")

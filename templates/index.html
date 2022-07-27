@@ -1,8 +1,4 @@
 {% extends "base.html" %} {% block content %}
-<h4>Name: <em>{{ name }}</em></h4>
-<p>User: <em>{{ username }}</em></p>
-<p>Email: <em>{{ email }}</em></p>
-<br />
 
 {% for i in posts %}
 <br />
@@ -19,4 +15,6 @@
 </article>
 {% if loop.last %}
 <hr />
-{% endif %} {% endfor %} {% endblock %}
+{% endif %} {% else %}
+<p class="no-posts">Ops.. There are no posts to display!</p>
+{% endfor %} {% endblock %}

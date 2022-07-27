@@ -10,3 +10,8 @@ h2 {
 h3 {
   color: cornflowerblue;
 }
+
+.no-posts {
+  font-style: italic;
+  color: gray;
+}
