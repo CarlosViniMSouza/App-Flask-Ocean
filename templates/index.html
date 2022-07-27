@@ -1,28 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My Blog</title>
-  </head>
-  <body>
-    <h4>Name: <em>{{ name }}</em></h4>
-    <p>User: <em>{{ username }}</em></p>
-    <p>Email: <em>{{ email }}</em></p>
+{% extends "base.html" %} {% block content %}
+<h4>Name: <em>{{ name }}</em></h4>
+<p>User: <em>{{ username }}</em></p>
+<p>Email: <em>{{ email }}</em></p>
+<br />
 
-    {% for i in posts %}
-    <br />
-    <article class="post">
-      <header>
-        <div>
-          <hr />
-          <h3>{{i.title}}</h3>
-          <div class="about">
-            by {{i.author}}, on {{i.created.strftime("%d/%m/%Y")}}
-          </div>
-        </div>
-      </header>
-    </article>
-    {% if loop.last %}
-    <hr />
-    {% endif %} {% endfor %}
-  </body>
-</html>
+{% for i in posts %}
+<br />
+<article class="post">
+  <header>
+    <div>
+      <hr />
+      <h3>{{i.title}}</h3>
+      <div class="about">
+        by {{i.author}}, on {{i.created.strftime("%d/%m/%Y")}}
+      </div>
+    </div>
+  </header>
+</article>
+{% if loop.last %}
+<hr />
+{% endif %} {% endfor %} {% endblock %}

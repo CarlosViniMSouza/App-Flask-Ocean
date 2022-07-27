@@ -1,4 +1,4 @@
 git add .
-git commit -m "interval"
+git commit -m "css -> added"
 git push
 git status
