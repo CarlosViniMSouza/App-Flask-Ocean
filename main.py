@@ -41,21 +41,21 @@ def index():
 @app.route("/populate")
 def populate():
     user = User(
-        username="Carlos", 
-        email="@gmail.com", 
-        password_hash='crypto'
+        username="Carlos",
+        email="@gmail.com",
+        password_hash="crypto"
     )
 
     post1 = Post(
         title="Fake Text 01",
         body="Created a fake text for test",
-        author="CarlosViniMSouza"
+        author=user
     )
 
     post2 = Post(
         title="Fake Text 02",
         body="Created a fake text for test",
-        author="CarloSouza"
+        author=user
     )
 
     db.session.add(user)

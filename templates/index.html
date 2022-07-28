@@ -1,14 +1,13 @@
-{% extends "base.html" %} {% block content %}
-
-{% for i in posts %}
+{% extends "base.html" %} {% block content %} {% for content in posts %}
 <br />
 <article class="post">
   <header>
     <div>
       <hr />
-      <h3>{{i.title}}</h3>
+      <h3>{{content.title}}</h3>
       <div class="about">
-        by {{i.author}}, on {{i.created.strftime("%d/%m/%Y")}}
+        by {{content.author.username}}, on
+        {{content.created.strftime('%d/%m/%Y')}}
       </div>
     </div>
   </header>
