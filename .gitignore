@@ -4,3 +4,6 @@ __pycache__/
 # enviroment
 venv
 .env
+
+# database
+app.db
