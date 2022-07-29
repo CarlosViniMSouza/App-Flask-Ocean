@@ -10,15 +10,30 @@
   <body>
     <h2>Blog Flask</h2>
     <nav>
-      {% if %}
-
+      {% if current_user.is_authenticated %}
+      <li>
+        <span> {{ current_user.username }} </span>
+      </li>
+      <li>
+        <a href="{{ url_for('logoutUser') }}">Log Out</a>
+      </li>
       {% else %}
-
-      {% endif%}
+      <li>
+        <a href="{{ url_for('registerUser') }}">Register</a>
+      </li>
+      <li>
+        <a href="{{ url_for('loginUser') }}">Log In</a>
+      </li>
+      {% endif %}
     </nav>
     <br />
     <nav></nav>
 
-    <section class="content">{% block content %} {% endblock %}</section>
+    <section class="content">
+      <header>{% block header %} {% endblock %}</header>
+      {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+      {% endfor %}
+    </section>
   </body>
 </html>

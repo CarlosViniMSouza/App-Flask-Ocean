@@ -73,15 +73,16 @@ def registerUser():
                 username=username,
                 email=email
             )
-
-            newUser.set_password(password)
+            newUser.setPassword(password)
             db.session.add(newUser)
             db.session.commit()
 
         except IntegrityError:
             flash("Username/E-mail already exists!")
+
         else:
-            return redirect(url_for("auth/login"))
+            return redirect(url_for("loginUser"))
+
     return render_template("auth/register.html")
 
 
@@ -93,14 +94,14 @@ def loginUser():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-
         user = User.query.filter_by(username=username).first()
 
         if user is None or not user.checkPassword(password):
-            flash("Username/Password Incorrect!")
-            return redirect(url_for("auth/login"))
+            flash("Incorrect Username/Password")
+            return redirect(url_for("loginUser"))
 
-        login_user(user)
+        loginUser(user)
+
         return redirect(url_for("index"))
 
     return render_template("auth/login.html")
@@ -110,3 +111,8 @@ def loginUser():
 def logoutUser():
     logout_user()
     return redirect(url_for("index"))
+
+
+@app.route("/create", methods=["GET", "POST"])
+def createPost():
+    return render_template("post/create.html")
